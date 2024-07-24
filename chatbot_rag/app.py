@@ -26,7 +26,9 @@ if not TOKEN_ACESSO:
 
 
 def login():
-    token_acesso = st.text_input("Token de acesso", key="usr_token", type="password")
+    token_acesso = st.text_input(
+        "Token de acesso", key="usr_token", type="password"
+    )
     if st.button("Log in"):
         if not token_acesso:
             st.info("Insira uma chave de API antes de continuar!".upper())
@@ -86,19 +88,19 @@ def main() -> None:
     chatbot = st.Page("chatbot.py", title="Chatbot", icon="🤖")
 
     # Página chatbot com RAG
-    chatbot_com_rag = st.Page("chatbot_com_rag.py", title="Chatbot com RAG", icon="📕")
+    chatbot_com_rag = st.Page(
+        "chatbot_com_rag.py", title="Chatbot com RAG", icon="📕"
+    )
 
     # -----------------------------------------------------------------------------
     # Verificando se a sessão atual está logada
     # -----------------------------------------------------------------------------
 
     if st.session_state.logged_in:
-        pg = st.navigation(
-            {
-                "Home": [home_page],
-                "Chats": [chatbot, chatbot_com_rag],
-            }
-        )
+        pg = st.navigation({
+            "Home": [home_page],
+            "Chats": [chatbot, chatbot_com_rag],
+        })
     else:
         pg = st.navigation([login_page])
 
